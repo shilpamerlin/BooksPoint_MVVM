@@ -9,13 +9,21 @@ import UIKit
 
 class BookCell: UITableViewCell {
 
+
     @IBOutlet weak var bookImage: UIImageView!
     @IBOutlet weak var bookCategory: UILabel!
     @IBOutlet weak var bookTitle: UILabel!
     @IBOutlet weak var bookAuthor: UILabel!
     
+    
+    var gradientLayer: CAGradientLayer!
+
     override func awakeFromNib() {
         super.awakeFromNib()
+        bookImage.clipsToBounds = true
+        bookImage.layer.borderWidth = 1
+        bookImage.layer.borderColor = UIColor.lightGray.cgColor
+       
         // Initialization code
     }
 
@@ -25,5 +33,7 @@ class BookCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+   
 
 }
