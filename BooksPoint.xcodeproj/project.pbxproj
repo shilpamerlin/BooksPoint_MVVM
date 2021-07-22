@@ -92,10 +92,10 @@
 		8D8338022684145800545C50 /* BooksPoint */ = {
 			isa = PBXGroup;
 			children = (
-				8DA9818826A8C312007F749C /* API Service */,
-				8DA9818326A8C2C1007F749C /* View Model */,
 				8D9339622684D2A500F08008 /* Data Model */,
 				8D9339612684D28C00F08008 /* ViewControllers */,
+				8DA9818326A8C2C1007F749C /* View Model */,
+				8DA9818826A8C312007F749C /* API Service */,
 				8D8338032684145800545C50 /* AppDelegate.swift */,
 				8D8338052684145800545C50 /* SceneDelegate.swift */,
 				8D8338092684145800545C50 /* Main.storyboard */,

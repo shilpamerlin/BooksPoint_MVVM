@@ -9,6 +9,7 @@ import Foundation
 
 class APIService {
     
+    //MARK:- Method to call Google Book api service
     func fetchBooks(closures : @escaping ([Items])->()) {
         let urlString = "https://www.googleapis.com/books/v1/volumes?q=flowers&orderBy=newest&key=AIzaSyCvsSnP-5bU_D5OyovPDyHRhsSd-NaZ3PU"
         let url = URL(string: urlString)

@@ -13,7 +13,8 @@ class BookViewModel {
     var items: [Items] = []
     var reloadTableViewClosure: (() -> Void) = {}
     var updatingStatus: (() -> Void) = {}
-    var selectedItem: BookCellModel!
+    var selectedItem: BookCellModel?
+    var bookForSale: (() -> Void) = {}
     private var cellViewModels = [BookCellModel]() {
         didSet {
             self.reloadTableViewClosure()
@@ -28,15 +29,23 @@ class BookViewModel {
             updatingStatus()
         }
     }
+    var isSale: Bool = false {
+        didSet {
+            bookForSale()
+            return
+        }
+    }
     
     func getCellAtRow(indexpath: IndexPath) -> BookCellModel{
         return cellViewModels[indexpath.row]
     }
     
+    //MARK:- Dependancy Injection
     init(apiService: APIService = APIService()) {
         self.apiService = apiService
     }
     
+    //MARK:- Method to retreive API data via closure
     func getApiData() {
         self.isLoading = true
         apiService.fetchBooks { items in
@@ -46,6 +55,7 @@ class BookViewModel {
         }
     }
     
+    //MARK:- Method to add data to custom cellViewModel
     func processFetchedData(items: [Items]){
         var cellModel = [BookCellModel]()
         for item in items {
@@ -54,26 +64,41 @@ class BookViewModel {
         self.cellViewModels = cellModel
     }
     
+    //MARK:- Method to create BookCellModel array
     func createCellViewModel(item: Items) -> BookCellModel {
         let result = item.volumeInfo
-        //let buyLink = item.saleInfo
+        let buyLink = item.saleInfo
         let readLink = item.accessInfo
         
-        return BookCellModel(title: result.title!, author: result.authors!.joined(separator: ", "), category: (result.authors!.joined(separator: ", ")), bookImage: (result.imageLinks?.thumbnail)!, description: result.description!, readerLink: readLink.webReaderLink!)
-        //buyLink: buyLink.buyLink!
+        return BookCellModel(title: result.title, author: result.authors?.joined(separator: ", "), category: (result.authors?.joined(separator: ", ")), bookImage: (result.imageLinks?.thumbnail)!, description: result.description, readerLink: readLink.webReaderLink,buyLink: buyLink.buyLink, saleability: buyLink.saleability)
     }
     
+    //MARK:- Method to get indexpath of selected item
     func selectedRow(indexPath: IndexPath) {
         selectedItem = cellViewModels[indexPath.row]
+        bookSaleability()
+        print("Value of isSale inside selectedRow \(isSale)")
+    }
+    
+    //MARK:- Method to check Saleability of a specific book
+    func bookSaleability(){
+        if selectedItem?.saleability == "FOR_SALE" {
+            self.isSale = true
+            
+        } else {
+            self.isSale = false
+        }
     }
 }
 
+// MARK:Custom struct used to configure cell
 struct BookCellModel {
-    let title: String
-    let author: String
-    let category:String
-    let bookImage: String
-    let description: String
-    let readerLink: String
-    //let buyLink: String
+    let title: String?
+    let author: String?
+    let category:String?
+    let bookImage: String?
+    let description: String?
+    let readerLink: String?
+    let buyLink: String?
+    let saleability: String?
 }

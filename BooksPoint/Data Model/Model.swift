@@ -10,18 +10,23 @@ import Foundation
 struct Book: Codable {
     let items : [Items]
 }
+
 struct Items : Codable {
     let id : String?
     let volumeInfo : VolumeInfo
     let saleInfo : SaleInfo
     let accessInfo : AccessInfo
 }
+
 struct SaleInfo : Codable {
     let buyLink : String?
+    let saleability: String?
 }
+
 struct AccessInfo : Codable {
     let webReaderLink : String?
 }
+
 struct VolumeInfo : Codable {
     let authors : [String]?
     let categories : [String]?
@@ -34,7 +39,7 @@ struct VolumeInfo : Codable {
     let buyLink : String?
     let webReaderLink : String?
 }
+
 struct ImageLinks : Codable {
     let thumbnail : String?
-    
 }

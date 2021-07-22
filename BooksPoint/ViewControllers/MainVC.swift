@@ -13,22 +13,13 @@ class MainVC: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var bookTableView: UITableView!
-   
-    var selectedIndex : Items?
     var viewModel: BookViewModel = BookViewModel()
    
+    // MARK: - Life cycle methods
     override func viewDidLoad() {
-       
        super.viewDidLoad()
         initView()
         initViewModel()
-
-       /* fetchBooks { data in
-            self.items = data 
-           DispatchQueue.main.async {
-            self.bookTableView.reloadData()
-           }
-       } done*/
     }
     
     func initView(){
@@ -37,10 +28,9 @@ class MainVC: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         bookTableView.dataSource = self
         bookTableView.delegate = self
-        bookTableView.rowHeight = 150
-        viewModel.getApiData()
     }
     
+    //MARK:- Custom method to handle UI update as per view model updates
     func initViewModel(){
         viewModel = BookViewModel()
         viewModel.updatingStatus = { [weak self] () in
@@ -66,7 +56,5 @@ class MainVC: UIViewController {
         }
         viewModel.getApiData()
     }
-    
-    
 }
     
