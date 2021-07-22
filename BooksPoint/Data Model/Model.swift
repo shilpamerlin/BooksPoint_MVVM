@@ -13,6 +13,14 @@ struct Book: Codable {
 struct Items : Codable {
     let id : String?
     let volumeInfo : VolumeInfo
+    let saleInfo : SaleInfo
+    let accessInfo : AccessInfo
+}
+struct SaleInfo : Codable {
+    let buyLink : String?
+}
+struct AccessInfo : Codable {
+    let webReaderLink : String?
 }
 struct VolumeInfo : Codable {
     let authors : [String]?
@@ -27,6 +35,6 @@ struct VolumeInfo : Codable {
     let webReaderLink : String?
 }
 struct ImageLinks : Codable {
-    let thumbnail : URL?
+    let thumbnail : String?
     
 }

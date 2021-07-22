@@ -7,8 +7,9 @@
 
 import UIKit
 import WebKit
+import SDWebImage
 
-class DetailVC: UIViewController {
+class DetailVC: UIViewController, WKUIDelegate {
 
     @IBOutlet weak var bookImageView: UIImageView!
     @IBOutlet weak var bookTitle: UILabel!
@@ -16,27 +17,19 @@ class DetailVC: UIViewController {
     @IBOutlet weak var bookDescription: UITextView!
     @IBOutlet weak var btnPurchase: UIButton!
     @IBOutlet weak var btnRead: UIButton!
-    var selectedObject : Items?
+    var selectedObject : BookCellModel?
     var webView: WKWebView!
     
     override func viewDidLoad() {
-       
-        
-        
         super.viewDidLoad()
+        //webView.navigationDelegate = self
         navigationItem.largeTitleDisplayMode = .never
-        let selectedItem = selectedObject?.volumeInfo
-        bookTitle.text = selectedItem?.title
-        bookAuthor.text = selectedItem?.authors?.joined(separator: ", ")
-        
-        let imageString = (selectedItem?.imageLinks?.thumbnail)!
-        if let data = try? Data(contentsOf: imageString) {
-                        if let image = UIImage(data: data) {
-                            bookImageView.image = image
-                        }
-            }
-        bookDescription.text = selectedItem?.description
-       
+        //let selectedItem = selectedObject?.
+        bookTitle.text = selectedObject?.title
+        bookAuthor.text = selectedObject?.author
+        let image = selectedObject?.bookImage
+        bookImageView.sd_setImage(with: URL(string: image!), completed: nil)
+        bookDescription.text = selectedObject?.description
         btnPurchase.layer.cornerRadius = 5
         btnPurchase.layer.borderWidth = 1
         btnPurchase.layer.borderColor = UIColor.black.cgColor
@@ -49,19 +42,20 @@ class DetailVC: UIViewController {
         }
     
     @IBAction func bookRead(_ sender: Any) {
-        let urlString = selectedObject?.volumeInfo.imageLinks?.thumbnail
-       print("URL is \(urlString)")
-       // let webUrl = URL(string: urlString!)
-       
+        let urlString = selectedObject?.readerLink
+       loadWebSite(url: urlString!)
         
     }
     
     @IBAction func bookPurchase(_ sender: Any) {
-        let urlString = selectedObject?.volumeInfo.buyLink
-        //loadWebSite(url: urlString!)
+        //let urlString = selectedObject?.buyLink
+       // loadWebSite(url: urlString!)
       
     }
     func loadWebSite(url : String){
+        webView = WKWebView()
+       // webView.navigationDelegate = self
+        view = webView
         let webUrl = URL(string: url)
         webView.load(URLRequest(url: webUrl!))
         webView.allowsBackForwardNavigationGestures = true
