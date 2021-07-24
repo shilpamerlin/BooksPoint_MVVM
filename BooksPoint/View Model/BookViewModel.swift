@@ -14,7 +14,7 @@ class BookViewModel {
     var reloadTableViewClosure: (() -> Void) = {}
     var updatingStatus: (() -> Void) = {}
     var selectedItem: BookCellModel?
-    var bookForSale: (() -> Void) = {}
+    
     private var cellViewModels = [BookCellModel]() {
         didSet {
             self.reloadTableViewClosure()
@@ -27,12 +27,6 @@ class BookViewModel {
     var isLoading: Bool = false {
         didSet{
             updatingStatus()
-        }
-    }
-    var isSale: Bool = false {
-        didSet {
-            bookForSale()
-            return
         }
     }
     
@@ -76,18 +70,6 @@ class BookViewModel {
     //MARK:- Method to get indexpath of selected item
     func selectedRow(indexPath: IndexPath) {
         selectedItem = cellViewModels[indexPath.row]
-        bookSaleability()
-        print("Value of isSale inside selectedRow \(isSale)")
-    }
-    
-    //MARK:- Method to check Saleability of a specific book
-    func bookSaleability(){
-        if selectedItem?.saleability == "FOR_SALE" {
-            self.isSale = true
-            
-        } else {
-            self.isSale = false
-        }
     }
 }
 

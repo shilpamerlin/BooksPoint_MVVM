@@ -9,8 +9,6 @@ import UIKit
 
 
 class MainVC: UIViewController {
-   
-    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var bookTableView: UITableView!
     var viewModel: BookViewModel = BookViewModel()

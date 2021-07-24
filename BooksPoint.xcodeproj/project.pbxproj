@@ -17,6 +17,7 @@
 		8D8338102684145B00545C50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D83380E2684145B00545C50 /* LaunchScreen.storyboard */; };
 		8D9339602684CCE200F08008 /* BookCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D93395F2684CCE200F08008 /* BookCell.swift */; };
 		8D9339662684FC8300F08008 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9339652684FC8300F08008 /* Model.swift */; };
+		8DA3DF0E26AC4BDB009ACB14 /* BookDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA3DF0D26AC4BDB009ACB14 /* BookDetailViewModel.swift */; };
 		8DA9818526A8C2E5007F749C /* BookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA9818426A8C2E5007F749C /* BookViewModel.swift */; };
 		8DA9818726A8C30D007F749C /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA9818626A8C30D007F749C /* APIService.swift */; };
 		8DA9818A26A8C853007F749C /* BookTableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA9818926A8C853007F749C /* BookTableExtension.swift */; };
@@ -35,6 +36,7 @@
 		8D8338112684145B00545C50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D93395F2684CCE200F08008 /* BookCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCell.swift; sourceTree = "<group>"; };
 		8D9339652684FC8300F08008 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		8DA3DF0D26AC4BDB009ACB14 /* BookDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailViewModel.swift; sourceTree = "<group>"; };
 		8DA9818426A8C2E5007F749C /* BookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewModel.swift; sourceTree = "<group>"; };
 		8DA9818626A8C30D007F749C /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		8DA9818926A8C853007F749C /* BookTableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTableExtension.swift; sourceTree = "<group>"; };
@@ -93,12 +95,12 @@
 			isa = PBXGroup;
 			children = (
 				8D9339622684D2A500F08008 /* Data Model */,
+				8DA3DF0A26AA00FE009ACB14 /* View */,
 				8D9339612684D28C00F08008 /* ViewControllers */,
 				8DA9818326A8C2C1007F749C /* View Model */,
 				8DA9818826A8C312007F749C /* API Service */,
 				8D8338032684145800545C50 /* AppDelegate.swift */,
 				8D8338052684145800545C50 /* SceneDelegate.swift */,
-				8D8338092684145800545C50 /* Main.storyboard */,
 				8D83380C2684145B00545C50 /* Assets.xcassets */,
 				8D83380E2684145B00545C50 /* LaunchScreen.storyboard */,
 				8D8338112684145B00545C50 /* Info.plist */,
@@ -111,7 +113,6 @@
 			children = (
 				8D8338072684145800545C50 /* MainVC.swift */,
 				8DA9818926A8C853007F749C /* BookTableExtension.swift */,
-				8D93395F2684CCE200F08008 /* BookCell.swift */,
 				8D7CD0B626909EEA00D586FF /* DetailVC.swift */,
 			);
 			path = ViewControllers;
@@ -125,10 +126,20 @@
 			path = "Data Model";
 			sourceTree = "<group>";
 		};
+		8DA3DF0A26AA00FE009ACB14 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8D8338092684145800545C50 /* Main.storyboard */,
+				8D93395F2684CCE200F08008 /* BookCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		8DA9818326A8C2C1007F749C /* View Model */ = {
 			isa = PBXGroup;
 			children = (
 				8DA9818426A8C2E5007F749C /* BookViewModel.swift */,
+				8DA3DF0D26AC4BDB009ACB14 /* BookDetailViewModel.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -261,6 +272,7 @@
 				8D9339602684CCE200F08008 /* BookCell.swift in Sources */,
 				8D8338082684145800545C50 /* MainVC.swift in Sources */,
 				8D7CD0B726909EEA00D586FF /* DetailVC.swift in Sources */,
+				8DA3DF0E26AC4BDB009ACB14 /* BookDetailViewModel.swift in Sources */,
 				8D8338042684145800545C50 /* AppDelegate.swift in Sources */,
 				8DA9818726A8C30D007F749C /* APIService.swift in Sources */,
 				8D8338062684145800545C50 /* SceneDelegate.swift in Sources */,

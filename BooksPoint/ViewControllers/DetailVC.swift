@@ -10,7 +10,6 @@ import WebKit
 import SDWebImage
 
 class DetailVC: UIViewController, WKUIDelegate {
-
     @IBOutlet weak var bookImageView: UIImageView!
     @IBOutlet weak var bookTitle: UILabel!
     @IBOutlet weak var bookAuthor: UILabel!
@@ -18,7 +17,7 @@ class DetailVC: UIViewController, WKUIDelegate {
     @IBOutlet weak var btnPurchase: UIButton!
     @IBOutlet weak var btnRead: UIButton!
     var selectedObject : BookCellModel?
-    var viewModel = BookViewModel()
+    var viewDetailModel = BookDetailViewModel()
     var webView: WKWebView!
     
     override func viewDidLoad() {
@@ -48,11 +47,13 @@ class DetailVC: UIViewController, WKUIDelegate {
     }
     
     @IBAction func bookPurchase(_ sender: Any) {
+        viewDetailModel.bookSaleability()
+        print("Value  is \(self.viewDetailModel.isSale)")
         let urlString = self.selectedObject?.buyLink
-        viewModel.bookForSale = { [weak self] () in
+        viewDetailModel.bookForSale = { [weak self] () in
             DispatchQueue.main.async {
-                print("Value of isSalevalue is \(self?.viewModel.isSale)")
-                let isSale = self?.viewModel.isSale ?? false
+                print("Value of isSalevalue inside  closure is \(self?.viewDetailModel.isSale)")
+                let isSale = self?.viewDetailModel.isSale ?? false
                 if isSale {
                     self?.loadWebSite(url: urlString!)
                 } else {
